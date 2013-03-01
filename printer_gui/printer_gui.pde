@@ -22,7 +22,10 @@ PShape home;
 PShape bright;
 PShape info;
 
-Navigation myNavigation;
+boolean myRecipes;
+
+Navigation getNavigation;
+Recipes getRecipes;
 /////////////////////////////////////////////////////
 
 
@@ -50,11 +53,14 @@ void setup()
   homeSize = 70;
   infoSize = 65;
   
+  myRecipes = false;
+  
   home = loadShape("home.svg");
   bright = loadShape("brightness.svg");
   info = loadShape("info.svg");
   
-  myNavigation = new Navigation();
+  getNavigation = new Navigation();
+  getRecipes = new Recipes();
 }
 /////////////////////////////////////////////////////
 
@@ -65,17 +71,10 @@ void setup()
 void draw()
 {
   background(200);
-  myNavigation.show();
+  getNavigation.show();
+  getScreen();
   
-  // go to myrecipes
-  if(mouseX > 0 && mouseX < buttonW && mouseY > buttonH && mouseY < buttonH*2 && mousePressed == true)
-  {
-    screenMyRecipes();
-  }
-  else
-  {
-    screenWelcome();
-  }
+  println(frameRate);
 }
 /////////////////////////////////////////////////////
 
@@ -83,34 +82,35 @@ void draw()
 /////////////////////////////////////////////////////
 // WELCOME SCREEN
 /////////////////////////////////////////////////////
-void screenWelcome()
-{
-  pushStyle();
-    noStroke();
-    fill(0);
-    textSize(40);
-    // printer version
-    text("G.E. Compact Food Printer A2.0b", width/2, barS+100);
-    // welcome text
-    textSize(30);
-    text("Hello! What would you like to eat today?", width/2, barS+150);
-  popStyle();
+void getScreen()
+{  
+  // go to myrecipes
+  if(myRecipes == true)
+  {
+    getRecipes.myRecipes();
+  }
+  else
+  {
+    getRecipes.myWelcome();
+  }
 }
 /////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////
-// MY RECIPE SCREEN - HOME
+// WE ONLY WANT TO CLICK ONCE
 /////////////////////////////////////////////////////
-void screenMyRecipes()
+void mousePressed()
 {
-  pushStyle();
-    noStroke();
-    fill(0);
-    textSize(40);
-    // printer version
-    text("AHHHHHHHHHHH!", width/2, barS+100);
-  popStyle();
+  // setup the booleans
+  if(mouseX > 0 && mouseX < buttonW && mouseY > buttonH && mouseY < buttonH*2)
+  {
+    myRecipes = true;
+  }
+  else
+  {
+    myRecipes = false;
+  }
 }
 /////////////////////////////////////////////////////
 

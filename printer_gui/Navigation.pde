@@ -107,6 +107,12 @@ void show()
         rect(0,buttonH,buttonW,buttonH);
         fill(141,198,63);
       }
+      else if(myRecipes == true)
+      {
+        fill(100);
+        rect(0,buttonH,buttonW,buttonH);
+        fill(141,198,63);
+      }
       else
       {
         fill(51);
