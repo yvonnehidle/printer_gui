@@ -80,8 +80,10 @@ void myRecipes()
     text("Cinnamon oatmeal", boxSp*2+15, barS+boxSp*2+310);
     text("Plain waffle", boxSp*2+15, barS+boxSp*2+340);
     text("Waffle and syrup", boxSp*2+15, barS+boxSp*2+370);
+    text("Blueberry muffin", boxSp*2+15, barS+boxSp*2+400);
+    text("Banana muffin", boxSp*2+15, barS+boxSp*2+430);
     textSize(18);
-    text("More...", boxSp*2+15, barS+boxSp*2+410);
+    text("More...", boxSp*2+15, barS+boxSp*2+480);
     
     // lunch
     textSize(15);
@@ -97,8 +99,10 @@ void myRecipes()
     text("Beef tacos", boxSp*3+boxW+15, barS+boxSp*2+310);
     text("Asian noodles", boxSp*3+boxW+15, barS+boxSp*2+340);
     text("Plain beef burger", boxSp*3+boxW+15, barS+boxSp*2+370);
+    text("Deluxe burger", boxSp*3+boxW+15, barS+boxSp*2+400);
+    text("Sweet potato fries", boxSp*3+boxW+15, barS+boxSp*2+430);
     textSize(18);
-    text("More...", boxSp*3+boxW+15, barS+boxSp*2+410);
+    text("More...", boxSp*3+boxW+15, barS+boxSp*2+480);
     
     // dinner
     textSize(15);
@@ -114,8 +118,10 @@ void myRecipes()
     text("Japanese stirfry", boxSp*4+boxW*2+15, barS+boxSp*2+310);
     text("Tom kha soup", boxSp*4+boxW*2+15, barS+boxSp*2+340);
     text("Spicy basil", boxSp*4+boxW*2+15, barS+boxSp*2+370);
+    text("Mom's meatloaf", boxSp*4+boxW*2+15, barS+boxSp*2+400);
+    text("Turkey burger", boxSp*4+boxW*2+15, barS+boxSp*2+430);
     textSize(18);
-    text("More...", boxSp*4+boxW*2+15, barS+boxSp*2+410);
+    text("More...", boxSp*4+boxW*2+15, barS+boxSp*2+480);
     
     // snacks
     textSize(15);
@@ -131,24 +137,15 @@ void myRecipes()
     text("Mom's pesto", boxSp*5+boxW*3+15, barS+boxSp*2+310);
     text("Spicy jerky", boxSp*5+boxW*3+15, barS+boxSp*2+340);
     text("Peanut butter sticks", boxSp*5+boxW*3+15, barS+boxSp*2+370);
+    text("Hot dog", boxSp*5+boxW*3+15, barS+boxSp*2+400);
+    text("Bread slices", boxSp*5+boxW*3+15, barS+boxSp*2+430);
     textSize(18);
-    text("More...", boxSp*5+boxW*3+15, barS+boxSp*2+410);
+    text("More...", boxSp*5+boxW*3+15, barS+boxSp*2+480);
     
     // cat foods
     textSize(15);
     text("Seafood melody", boxSp*6+boxW*4+15, barS+boxSp*2+40);
-    // this is the first item clicked on in the video
-    if(mouseX > boxSp*6+boxW*4+15 && mouseX < boxSp*6+boxW*5+15 && mouseY > barS+boxSp*2+60 && mouseY < barS+boxSp*2+80)
-    {
-      pushStyle();
-        textSize(18);
-        text("Shrimp and Cod", boxSp*6+boxW*4+15, barS+boxSp*2+70);
-      popStyle();
-    }
-    else
-    {
-      text("Shrimp and Cod", boxSp*6+boxW*4+15, barS+boxSp*2+70);
-    }
+    text("Shrimp and Cod", boxSp*6+boxW*4+15, barS+boxSp*2+70);
     text("Whitefish and Tuna", boxSp*6+boxW*4+15, barS+boxSp*2+100);
     text("Salmon feast", boxSp*6+boxW*4+15, barS+boxSp*2+130);
     text("Turkey and giblets", boxSp*6+boxW*4+15, barS+boxSp*2+160);
@@ -159,8 +156,10 @@ void myRecipes()
     text("Lamb pate", boxSp*6+boxW*4+15, barS+boxSp*2+310);
     text("Meat melody", boxSp*6+boxW*4+15, barS+boxSp*2+340);
     text("Feline surf and turf", boxSp*6+boxW*4+15, barS+boxSp*2+370);
+    text("Fish cakes", boxSp*6+boxW*4+15, barS+boxSp*2+400);
+    text("Steak and liver", boxSp*6+boxW*4+15, barS+boxSp*2+430);
     textSize(18);
-    text("More...", boxSp*6+boxW*4+15, barS+boxSp*2+410);
+    text("More...", boxSp*6+boxW*4+15, barS+boxSp*2+480);
   popStyle();
 }
 /////////////////////////////////////////////////////
@@ -171,12 +170,31 @@ void myRecipes()
 /////////////////////////////////////////////////////
 void processingCatFood()
 {
+  // local variables
+  String info = "A delightful mix of shrimp and cod for your feline friend. Bio ink manufactured by Purina Fancy Feast Gourmet Cat Food.";
+  String ingredients = "Bio Ink Ingredients: Cod, liver, meat by-products, fish, fish broth, sole, shrimp, artificial and natural flavors, guar gum, added color (Red 3 and other color), calcium phosphate, potassium chloride, salt, zinc sulfate, thiamine mononitrate, Vitamin E supplement, ferrous sulfate, niacin, manganese sulfate, calcium pantothenate, Vitamin A supplement, copper sulfate, menadione sodium bisulfite complex (source of Vitamin K activity), pyridoxine hydrochloride, riboflavin supplement, Vitamin B-12 supplement, biotin, folic acid, Vitamin D-3 supplement, potassium iodide. ";
+  
   pushStyle();
     noStroke();
     fill(0);
+    textAlign(LEFT, CENTER);
     textSize(40);
-    // printer version
-    text("YUMMY CAT FOODS!", width/2, barS+100);
+    
+    // food item
+    text("Shrimp and Cod", boxW, barS+boxSp*2);
+    
+    // information
+    textAlign(LEFT, TOP);
+    textSize(15);
+    text(info, boxW, barS*1.5, 300, 80);
+    
+    // ingredients list
+    textSize(10);
+    text(ingredients, boxW, barS*1.5+80, 300, 300);
+    
+    // picture of food
+    image(catfood, boxSp, barS+boxSp*1.5);
+    
   popStyle();
 }
 /////////////////////////////////////////////////////

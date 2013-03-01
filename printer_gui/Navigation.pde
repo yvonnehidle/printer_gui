@@ -12,22 +12,18 @@ Navigation()
 /////////////////////////////////////////////////////
 void show()
 {
-  // local variables
-  int minutes = minute();
-  int hours = hour();
-  
   // main boxes
   pushStyle();
-    fill(51);
+    fill(0);
     // top bar
     rect(0,0,width,barS);
     // bottom bar
-    rect(0,height-barS,width,barS);
+    rect(0,height-barS2,width,barS2);
   popStyle();
   
   // navigation buttons
   pushStyle();
-    fill(51);
+    fill(0);
     stroke(70);
     strokeWeight(1);
     
@@ -41,7 +37,7 @@ void show()
       }
       else
       {
-        fill(51);
+        fill(0);
         rect(0,0,buttonW,buttonH);  
         fill(100);
       }
@@ -58,7 +54,7 @@ void show()
       }
       else
       {
-        fill(51);
+        fill(0);
         rect(buttonW,0,buttonW,buttonH);
         fill(100);
       }
@@ -75,7 +71,7 @@ void show()
       }
       else
       {
-        fill(51);
+        fill(0);
         rect(buttonW*2,0,buttonW,buttonH);
         fill(100);
       }
@@ -92,7 +88,7 @@ void show()
       }
       else
       {
-        fill(51);
+        fill(0);
         rect(buttonW*3,0,buttonW,buttonH);
         fill(100);
       }
@@ -107,7 +103,7 @@ void show()
         rect(0,buttonH,buttonW,buttonH);
         fill(141,198,63);
       }
-      else if(myRecipes == true)
+      else if(myRecipes == true || selectRecipe1 == true)
       {
         fill(100);
         rect(0,buttonH,buttonW,buttonH);
@@ -115,7 +111,7 @@ void show()
       }
       else
       {
-        fill(51);
+        fill(0);
         rect(0,buttonH,buttonW,buttonH);
         fill(100);
       }
@@ -132,7 +128,7 @@ void show()
       }
       else
       {
-        fill(51);
+        fill(0);
         rect(buttonW,buttonH,buttonW,buttonH);
         fill(100);
       }
@@ -149,7 +145,7 @@ void show()
       }
       else
       {
-        fill(51);
+        fill(0);
         rect(buttonW*2,buttonH,buttonW,buttonH);
         fill(100);
       }
@@ -166,65 +162,14 @@ void show()
       }
       else
       {
-        fill(51);
+        fill(0);
         rect(buttonW*3,buttonH,buttonW,buttonH);
         fill(100);
       }
       text("SHOPinks",buttonW2*7,buttonH2*3);
     popStyle();
     
-  popStyle();
-  
-  // static text
-  pushStyle();
-    noStroke();
-    fill(255);
-    textSize(50);
-    text(hours + ":" + nf(minutes,2), width/2,height-barS2);
-  popStyle();
-  
-  // home icon
-  pushStyle();
-    if(mouseX > iconSpacing-homeSize/2 && mouseX < iconSpacing+homeSize/2 && mouseY > height-barS2-homeSize && mouseY < height-barS2+homeSize)
-    {
-      home.enableStyle();
-    }
-    else
-    {
-      fill(100);
-      home.disableStyle();
-    }
-    shape(home,iconSpacing,height-barS2,homeSize,homeSize);
-  popStyle();
-  
-  // brightness icon
-  pushStyle();
-    if(mouseX > iconSpacing*2.5-homeSize/2 && mouseX < iconSpacing*2.5+homeSize/2 && mouseY > height-barS2-homeSize && mouseY < height-barS2+homeSize)
-    {
-      bright.enableStyle();
-    }
-    else
-    {
-      fill(100);
-      bright.disableStyle();
-    }
-    shape(bright,iconSpacing*2.5,height-barS2,homeSize,homeSize);
-  popStyle();
-  
-  // info icon
-  pushStyle();
-    if(mouseX > iconSpacing*4-infoSize/2 && mouseX < iconSpacing*4+infoSize && mouseY > height-barS2-infoSize && mouseY < height-barS2+infoSize)
-    {
-      info.enableStyle();
-    }
-    else
-    {
-      fill(100);
-      info.disableStyle();
-    }
-    shape(info,iconSpacing*4,height-barS2,infoSize,infoSize);
-  popStyle();
-  
+  popStyle();  
 }
 /////////////////////////////////////////////////////
 
