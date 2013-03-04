@@ -166,9 +166,9 @@ void myRecipes()
 
 
 /////////////////////////////////////////////////////
-// PROCESSING THE CAT FOOD
+// SHOW CAT FOOD NOWZ
 /////////////////////////////////////////////////////
-void processingCatFood()
+void showCatFood()
 {
   // local variables
   String info = "A delightful mix of shrimp and cod for your feline friend. Bio ink manufactured by Purina Fancy Feast Gourmet Cat Food.";
@@ -182,6 +182,9 @@ void processingCatFood()
     
     // food item
     text("Shrimp and Cod", boxW, barS+boxSp*2);
+    
+    // print zee food
+    text(printStatus, boxW*3, barS+boxSp*2);
     
     // information
     textAlign(LEFT, TOP);
@@ -199,4 +202,44 @@ void processingCatFood()
 }
 /////////////////////////////////////////////////////
 
+
+/////////////////////////////////////////////////////
+// PROCESS SAID CAT FOODS!
+/////////////////////////////////////////////////////
+void processCatFood()
+{ 
+  pushStyle();
+  noStroke();
+  fill(0);
+  textAlign(LEFT, CENTER);
+  textSize(20);
+  
+  showCatFood();
+  printStatus = "Processing...";
+  
+  // warming up
+  if(millis()-startTimer > 2000)
+  {
+    int percent = (millis()-2000)/100;
+    
+    if(percent < 100)
+    {
+    text("Warming up... " + percent + "%", boxW*3, barS+80);
+    }
+    else
+    {
+    text("Warming up... 100%", boxW*3, barS+80);
+    }
+  }
+  
+  // printing plate
+  if(millis()-startTimer > 10000)
+  {
+    text("Printing biodegradable plate...", boxW*3, barS+110);
+  }
+  
+  popStyle();
+  
+}
+/////////////////////////////////////////////////////
 }

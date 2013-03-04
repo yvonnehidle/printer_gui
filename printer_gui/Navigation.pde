@@ -103,7 +103,7 @@ void show()
         rect(0,buttonH,buttonW,buttonH);
         fill(141,198,63);
       }
-      else if(myRecipes == true || selectRecipe1 == true)
+      else if(myRecipes == true || selectRecipe1 == true || processRecipe == true)
       {
         fill(100);
         rect(0,buttonH,buttonW,buttonH);
