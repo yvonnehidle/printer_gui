@@ -20,14 +20,21 @@
   float boxSp;
 // my int-zees
   int startTimer;
+  int startTimer2;
 // my boolean-zees
   boolean myRecipes;
   boolean selectRecipe1;
+  boolean selectRecipe2;
   boolean processRecipe;
+  boolean chickenYes;
+  boolean catfoodYes;
+  boolean atHome;
 // str strings!
   String printStatus;
+  String printStatus2;
 // and images too
   PImage catfood;
+  PImage chicken;
 // time for classes!
   Navigation getNavigation;
   Recipes getRecipes;
@@ -61,14 +68,21 @@ void setup()
     boxSp = 20;
   // my int-zees
     startTimer = 0;
+    startTimer2 = 0;
   // my boolean-zees
     myRecipes = false;
     selectRecipe1 = false;
+    selectRecipe2 = false;
     processRecipe = false;
+    chickenYes = false;
+    catfoodYes = false;
+    atHome = true;
   // str strings!
-    printStatus = "Start Print!";
+    printStatus = "Print Shrimp & Cod";
+    printStatus2 = "Print Rotisserie Chicken";
   // and images too
     catfood = loadImage("codshrimp.jpg");
+    chicken = loadImage("chicken.png");
   // time for classes!
     getNavigation = new Navigation();
     getRecipes = new Recipes();
@@ -86,7 +100,9 @@ void draw()
   getScreen();
   
   // issues issues issues
-  println(startTimer);
+  //println(startTimer);
+  //println(catfoodYes);
+  //println(chickenYes);
 }
 /////////////////////////////////////////////////////
 
@@ -101,20 +117,30 @@ void getScreen()
   {
     getRecipes.myRecipes();
   }
-  // go to the food processing page
+  // go to catfood page
   else if(selectRecipe1 == true)
   {
     getRecipes.showCatFood();
   }
+  // go to chicken page
+  else if(selectRecipe2 == true)
+  {
+    getRecipes.showChicken();
+  }
+  // else go home
+  else if(atHome == true)
+  {
+    getRecipes.myWelcome();
+  }
+  
   // process the food
-  else if(processRecipe == true)
+  if(processRecipe == true && catfoodYes == true)
   {
     getRecipes.processCatFood();
   }
-  // else go home
-  else
+  else if(processRecipe == true && chickenYes == true)
   {
-    getRecipes.myWelcome();
+    getRecipes.processChicken();
   }
 }
 /////////////////////////////////////////////////////
@@ -130,29 +156,58 @@ void mousePressed()
   {
     myRecipes = true;
     selectRecipe1 = false;
+    selectRecipe2 = false;
     processRecipe = false;
+    chickenYes = false;
+    catfoodYes = false;
+    atHome = false;
   }
-  // selected a recipe in the recipe tab
-  else if(mouseX > boxSp*6+boxW*4 && mouseX < boxSp*6+boxW*5 && mouseY > barS+boxSp*2-100 && mouseY < barS+boxSp*2+100)
+  // selected the cat food recipe
+  else if(mouseX > boxSp*6+boxW*4 && mouseX < boxSp*6+boxW*5 && mouseY > barS+boxSp*2+70-20 && mouseY < barS+boxSp*2+70+20)
   {
     myRecipes = false;
     selectRecipe1 = true;
+    selectRecipe2 = false;
     processRecipe = false;
+    chickenYes = false;
+    catfoodYes = true;
+    atHome = false;
   }
-  // hit the print button
-  else if(mouseX > boxW*3 && mouseX < boxW*3+200 && mouseY > barS+boxSp*2-20 && mouseY < barS+boxSp*2+20)
+  // select the chicken recipe
+  else if(mouseX > boxSp*4+boxW*2 && mouseX < boxSp*4+boxW*3 && mouseY > barS+boxSp*2+370-20 && mouseY < barS+boxSp*2+370+20)
   {
     myRecipes = false;
     selectRecipe1 = false;
+    selectRecipe2 = true;
+    processRecipe = false;
+    chickenYes = true;
+    catfoodYes = false;
+    atHome = false;
+  }
+  // hit the print button (catfood)
+  else if(mouseX > boxW*3 && mouseX < boxW*3+250 && mouseY > barS+boxSp*2-30 && mouseY < barS+boxSp*2+30 && catfoodYes == true)
+  {
+    myRecipes = false;
+    selectRecipe1 = false;
+    selectRecipe2 = false;
     processRecipe = true;
+    atHome = false;
     startTimer=millis();
+  }
+  // hit the print button (chicken)
+  else if(mouseX > boxW*3 && mouseX < boxW*3+250 && mouseY > barS+boxSp*2-30 && mouseY < barS+boxSp*2+30 && chickenYes == true)
+  {
+    myRecipes = false;
+    selectRecipe1 = false;
+    selectRecipe2 = false;
+    processRecipe = true;
+    atHome = false;
+    startTimer2=millis();
   }
   // else go home
   else
   {
-    myRecipes = false;
-    selectRecipe1 = false;
-    processRecipe = false;
+    startTimer=0;
   }
 }
 /////////////////////////////////////////////////////

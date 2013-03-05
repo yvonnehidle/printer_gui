@@ -1,6 +1,5 @@
 class Recipes
 {
-  
 
 Recipes()
 {
@@ -117,7 +116,7 @@ void myRecipes()
     text("Lemon chicken", boxSp*4+boxW*2+15, barS+boxSp*2+280);
     text("Japanese stirfry", boxSp*4+boxW*2+15, barS+boxSp*2+310);
     text("Tom kha soup", boxSp*4+boxW*2+15, barS+boxSp*2+340);
-    text("Spicy basil", boxSp*4+boxW*2+15, barS+boxSp*2+370);
+    text("Rotisserie chicken", boxSp*4+boxW*2+15, barS+boxSp*2+370);
     text("Mom's meatloaf", boxSp*4+boxW*2+15, barS+boxSp*2+400);
     text("Turkey burger", boxSp*4+boxW*2+15, barS+boxSp*2+430);
     textSize(18);
@@ -172,18 +171,19 @@ void showCatFood()
 {
   // local variables
   String info = "A delightful mix of shrimp and cod for your feline friend. Bio ink manufactured by Purina Fancy Feast Gourmet Cat Food.";
-  String ingredients = "Bio Ink Ingredients: Cod, liver, meat by-products, fish, fish broth, sole, shrimp, artificial and natural flavors, guar gum, added color (Red 3 and other color), calcium phosphate, potassium chloride, salt, zinc sulfate, thiamine mononitrate, Vitamin E supplement, ferrous sulfate, niacin, manganese sulfate, calcium pantothenate, Vitamin A supplement, copper sulfate, menadione sodium bisulfite complex (source of Vitamin K activity), pyridoxine hydrochloride, riboflavin supplement, Vitamin B-12 supplement, biotin, folic acid, Vitamin D-3 supplement, potassium iodide. ";
+  String ingredients = "Bio Ink Ingredients: Cod cells, fish cells, shrimp cells, artificial and natural flavors, guar gum, added color (Red 3 and other color), calcium phosphate, potassium chloride, salt, zinc sulfate, thiamine mononitrate, Vitamin E supplement, ferrous sulfate, niacin, manganese sulfate, calcium pantothenate, Vitamin A supplement, copper sulfate, menadione sodium bisulfite complex (source of Vitamin K activity), pyridoxine hydrochloride, riboflavin supplement, Vitamin B-12 supplement, biotin, folic acid, Vitamin D-3 supplement, potassium iodide. ";
   
   pushStyle();
     noStroke();
     fill(0);
     textAlign(LEFT, CENTER);
-    textSize(40);
     
     // food item
+    textSize(40);
     text("Shrimp and Cod", boxW, barS+boxSp*2);
     
     // print zee food
+    textSize(30);
     text(printStatus, boxW*3, barS+boxSp*2);
     
     // information
@@ -204,42 +204,210 @@ void showCatFood()
 
 
 /////////////////////////////////////////////////////
-// PROCESS SAID CAT FOODS!
+// MMM CHICKEN!
+/////////////////////////////////////////////////////
+void showChicken()
+{
+  // local variables
+  String info = "A scrumptious rotisserie style chicken. Animal friendly! Printed, not raised. Made with real animal cells. Bio ink manufactured by Modern Meadows.";
+  String ingredients = "Bio Ink Ingredients: chicken cells, canola oil, apple cider vinegar, garlic, brown sugar.";
+  
+  pushStyle();
+    noStroke();
+    fill(0);
+    textAlign(LEFT, CENTER);
+    
+    // food item
+    textSize(40);
+    text("Rotisserie Chicken", boxW, barS+boxSp*2);
+    
+    // print zee food
+    textSize(30);
+    text(printStatus2, boxW*3, barS+boxSp*2);
+    
+    // information
+    textAlign(LEFT, TOP);
+    textSize(15);
+    text(info, boxW, barS*1.5, 300, 100);
+    
+    // ingredients list
+    textSize(10);
+    text(ingredients, boxW, barS*1.5+120, 300, 300);
+    
+    // picture of food
+    image(chicken, boxSp, barS+boxSp*1.5);
+    
+  popStyle();
+}
+/////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////
+// PROCESS CAT FOOD
 /////////////////////////////////////////////////////
 void processCatFood()
-{ 
+{   
+  // locals
+  int timer1 = 0;
+  int timer2 = 0;
+  int timer3 = 0;
+  
+  // push that style
   pushStyle();
   noStroke();
   fill(0);
   textAlign(LEFT, CENTER);
   textSize(20);
   
+  // always show this
   showCatFood();
+  
+  //------------------------------------------------ processing
   printStatus = "Processing...";
   
   // warming up
-  if(millis()-startTimer > 2000)
-  {
-    int percent = (millis()-2000)/100;
-    
-    if(percent < 100)
-    {
-    text("Warming up... " + percent + "%", boxW*3, barS+80);
-    }
-    else
-    {
-    text("Warming up... 100%", boxW*3, barS+80);
-    }
+  if( millis()-startTimer > 2000 && millis()-startTimer < 9000 )
+  { 
+    timer1 = ( (millis()-startTimer)/100 )%102;
+    text("Warming up printer... "+timer1+"%", boxW*3, barS+80);
   }
   
-  // printing plate
-  if(millis()-startTimer > 10000)
+  //------------------------------------------------ warming up is done
+  if( millis()-startTimer > 9000)
   {
-    text("Printing biodegradable plate...", boxW*3, barS+110);
+    text("Warming up printer... 100%", boxW*3, barS+80);
+  }
+  
+  //------------------------------------------------ print out the plate
+  if( millis()-startTimer > 9000 && millis()-startTimer < 39000 )
+  { 
+    timer2 = ( (millis()-startTimer)/400 )%102;
+    text("Printing out biodegradable plate... "+timer2+"%", boxW*3, barS+110);
+  }
+  
+  //------------------------------------------------ plate is done
+  if( millis()-startTimer > 39000)
+  {
+    text("Printing out biodegradable plate... 100%", boxW*3, barS+110);
+  }
+  
+  //------------------------------------------------ print out the food
+  if( millis()-startTimer > 41000 && millis()-startTimer < 81000 )
+  { 
+    timer3 = ( (millis()-startTimer)/400 )%102;
+    text("Printing Shrimp & Cod... "+timer3+"%", boxW*3, barS+140);
+  }
+  
+  //------------------------------------------------ food is done!!
+  if( millis()-startTimer > 81000)
+  {
+    text("Printing Shrimp & Cod... 100%", boxW*3, barS+140);
+  }
+  
+  //------------------------------------------------ one moment, powering down
+  if( millis()-startTimer > 82000)
+  {
+    text("Please wait one moment...", boxW*3, barS+170);
+  }
+  
+  //------------------------------------------------ take your food
+  if( millis()-startTimer > 84000)
+  {
+    text("Your Shrimp & Cod is now ready! Enjoy!", boxW*3, barS+200);
+  }
+  
+  //------------------------------------------------ print again?
+  if( millis()-startTimer > 85000)
+  {
+    printStatus="Print more?";
   }
   
   popStyle();
+}
+/////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////
+// PROCESS CHICKEN
+/////////////////////////////////////////////////////
+void processChicken()
+{   
+  // locals
+  int timer1 = 0;
+  int timer2 = 0;
+  int timer3 = 0;
   
+  // push that style
+  pushStyle();
+  noStroke();
+  fill(0);
+  textAlign(LEFT, CENTER);
+  textSize(20);
+  
+  // always show this
+  showChicken();
+  
+  //------------------------------------------------ processing
+  printStatus2 = "Processing...";
+  
+  // warming up
+  if( millis()-startTimer2 > 2000 && millis()-startTimer2 < 9000 )
+  { 
+    timer1 = ( (millis()-startTimer2)/100 )%102;
+    text("Warming up printer... "+timer1+"%", boxW*3, barS+80);
+  }
+  
+  //------------------------------------------------ warming up is done
+  if( millis()-startTimer2 > 9000)
+  {
+    text("Warming up printer... 100%", boxW*3, barS+80);
+  }
+  
+  //------------------------------------------------ print out the plate
+  if( millis()-startTimer2 > 9000 && millis()-startTimer2 < 39000 )
+  { 
+    timer2 = ( (millis()-startTimer2)/400 )%102;
+    text("Printing out biodegradable plate... "+timer2+"%", boxW*3, barS+110);
+  }
+  
+  //------------------------------------------------ plate is done
+  if( millis()-startTimer2 > 39000)
+  {
+    text("Printing out biodegradable plate... 100%", boxW*3, barS+110);
+  }
+  
+  //------------------------------------------------ print out the food
+  if( millis()-startTimer2 > 41000 && millis()-startTimer2 < 81000 )
+  { 
+    timer3 = ( (millis()-startTimer2)/400 )%102;
+    text("Printing Rotisserie Chicken... "+timer3+"%", boxW*3, barS+140);
+  }
+  
+  //------------------------------------------------ food is done!!
+  if( millis()-startTimer2 > 81000)
+  {
+    text("Printing Rotisserie Chicken... 100%", boxW*3, barS+140);
+  }
+  
+  //------------------------------------------------ one moment, powering down
+  if( millis()-startTimer2 > 82000)
+  {
+    text("Please wait one moment...", boxW*3, barS+170);
+  }
+  
+  //------------------------------------------------ take your food
+  if( millis()-startTimer2 > 84000)
+  {
+    text("Your Rotisserie Chicken is now ready! Enjoy!", boxW*3, barS+200);
+  }
+  
+  //------------------------------------------------ print again?
+  if( millis()-startTimer2 > 85000)
+  {
+    printStatus2="Print more?";
+  }
+  
+  popStyle();
 }
 /////////////////////////////////////////////////////
 }
